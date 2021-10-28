@@ -15,18 +15,18 @@ spec:
               service:
                 name: catalog-service
                 port:
-                  number: 3030
+                  number: 3001
           - path: /auth
             pathType: Prefix
             backend:
               service:
                 name: auth-service
                 port:
-                  number: 3030
+                  number: 3000
           - path: /catalog
             pathType: Prefix
             backend:
               service:
                 name: catalog-service
                 port:
-                  number: 3030
+                  number: 3001
