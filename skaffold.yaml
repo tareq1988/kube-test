@@ -1,0 +1,28 @@
+apiVersion: skaffold/v2beta25
+kind: Config
+metadata:
+  name: engress-test-skaffold
+build:
+  artifacts:
+  - image: dokan/auth-service
+    context: auth-service
+    # docker:
+    #   dockerfile: Dockerfile
+    sync:
+      manual:
+        - src: 'src/**/*.js'
+          dest: '.'
+  - image: dokan/catalog-service
+    context: catalog-service
+    sync:
+      manual:
+        - src: 'src/**/*.js'
+          dest: '.'
+    # docker:
+    #   dockerfile: Dockerfile
+deploy:
+  kubectl:
+    manifests:
+    - kube/deployment.yaml
+    - kube/ingress.yaml
+    - kube/services.yaml
